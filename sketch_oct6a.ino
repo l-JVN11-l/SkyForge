@@ -37,8 +37,8 @@ const int SERVO_MIN_ANGLE = 15;
 const int SERVO_MAX_ANGLE = 165;
 const int SERVO_PIN = 9;
 
-const int SERVO_SLOW_INTERVAL = 60;
-const int SERVO_FAST_INTERVAL = 8;
+const int SERVO_SLOW_INTERVAL = 100;
+const int SERVO_FAST_INTERVAL = 25;
 
 int servoInput = 0;
 unsigned long lastServoMoveTime = 0;

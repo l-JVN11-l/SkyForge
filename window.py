@@ -412,7 +412,7 @@ stepper_widgets = create_motor_card(
 servo_widgets = create_motor_card(
     cards,
     "02  SERVO MOTOR",
-    "SERVO POSITION CONTROL",
+    "COMMANDED ANGLE · NOT SENSOR MEASURED",
     GREEN,
     SERVO_MIN,
     SERVO_MAX
