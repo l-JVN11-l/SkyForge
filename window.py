@@ -34,16 +34,20 @@ STEPPER_MAX = 360
 SERVO_MIN = 15
 SERVO_MAX = 165
 
-BG = "#10131C"
-PANEL = "#1B2231"
-BORDER = "#30394D"
-TEXT = "#F1F5FF"
-MUTED = "#9AA8C2"
-BLUE = "#7C9CFF"
-GREEN = "#47D7B0"
-PURPLE = "#B69AFF"
-RED = "#FF7185"
-AMBER = "#FFC66D"
+# Light theme
+BG = "#F4F7FB"
+PANEL = "#FFFFFF"
+BORDER = "#D8E0EC"
+TEXT = "#172033"
+MUTED = "#64748B"
+BLUE = "#4263EB"
+GREEN = "#0F9D78"
+PURPLE = "#7950C9"
+RED = "#D9364F"
+AMBER = "#B7791F"
+INPUT_BG = "#FFFFFF"
+LOG_BG = "#F8FAFC"
+GRID = "#E2E8F0"
 
 
 # ================= SHARED STATE =================
@@ -258,7 +262,23 @@ style.configure(
 style.configure(
     "TButton",
     font=("Arial", 9, "bold"),
-    padding=7
+    padding=7,
+    background=PANEL,
+    foreground=TEXT,
+    bordercolor=BORDER,
+    focuscolor=BG
+)
+style.map(
+    "TButton",
+    background=[("active", "#EAF0FA"), ("pressed", "#DCE6F5")],
+    foreground=[("disabled", MUTED)]
+)
+style.configure(
+    "Vertical.TScrollbar",
+    background="#E2E8F0",
+    troughcolor=BG,
+    bordercolor=BG,
+    arrowcolor=MUTED
 )
 
 # Scrollable dashboard.
@@ -488,7 +508,7 @@ def draw_joystick(
         cy-deadzone_radius,
         cx+deadzone_radius,
         cy+deadzone_radius,
-        outline="#56627A",
+        outline="#AAB6C8",
         dash=(3, 3)
     )
 
@@ -639,7 +659,7 @@ if MATPLOTLIB_AVAILABLE:
     for spine in graph_ax.spines.values():
         spine.set_color(BORDER)
 
-    graph_ax.grid(True, color=BORDER, alpha=0.65)
+    graph_ax.grid(True, color=GRID, alpha=0.9)
 
     stepper_line, = graph_ax.plot(
         [], [], color=BLUE, linewidth=2, label="Stepper"
@@ -661,6 +681,7 @@ if MATPLOTLIB_AVAILABLE:
     graph_widget = FigureCanvasTkAgg(
         figure, master=graph_card
     )
+    graph_widget.get_tk_widget().configure(bg=PANEL)
     graph_widget.get_tk_widget().pack(
         fill="both",
         expand=True,
@@ -747,7 +768,7 @@ tk.Label(
 log_text = tk.Text(
     log_card,
     height=5,
-    bg="#121722",
+    bg=LOG_BG,
     fg=MUTED,
     insertbackground=TEXT,
     relief="flat",
